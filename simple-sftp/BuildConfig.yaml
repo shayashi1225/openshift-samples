@@ -1,0 +1,20 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: sftp
+  namespace: sftp
+spec:
+  source:
+    contextDir: "simple-sftp"
+    git:
+      uri: 'https://github.com/shayashi1225/openshift-samples.git'
+    type: Git
+  strategy:
+    type: Docker
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'simple-sftp:latest'
+      env: []
+  triggers:
+    - type: ConfigChange
